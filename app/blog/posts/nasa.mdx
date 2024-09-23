@@ -1,0 +1,38 @@
+---
+title: NASA internship recap
+publishedAt: 2023-01-01
+---
+
+\* update 09/2024 -- I  was just approved to make public the notebooks [here](https://github.com/roshda/ames-dashboards/tree/main)!
+
+
+I completed my NASA Ames internship this week with a presentation to Ames leadership alongside my team.
+
+For the past few months, I worked with a team of researchers looking into sustainable aviation fuel. I developed 3 Jupyter Notebooks to moden and visualize their data:
+
+### 1. Sustainable Aviation Fuel (SAF) Emissions Dashboard
+
+Provides analysis of emissions from different SAFs, focusing on chemical compositions, combustion properties, and resultant emissions like CO2, NOx, and particulate matter. Enables comparison of different fuels' environmental impacts, guiding investment decisions in SAF research and development.
+
+- **Data Sources:** Emission data from NASA Ames and partner facilities; chemical analysis data for SAF types (FT-SPK, HEFA-SPK).
+- **Tools:** **Pandas, NumPy, SciPy** for preprocessing, statistical analysis, and regression modeling to find correlations between fuel composition and emission levels. **Matplotlib** and **Seaborn** within Jupyter to create interactive plots and heatmaps that dynamically update based on user inputs.
+
+### 2. Contrail Formation and Climate Impact Modeling Dashboard
+
+Models contrail formation and climate impact, incorporating atmospheric chemistry and physics data. Visualizes contrails' climate impact and potential mitigation strategies. Shows which fuel types produce fewer or less-persistent contrails.
+
+- **Data Sources:** Atmospheric data from NASA’s DC-8 and remote sensing; temperature, pressure, humidity, ice particle size distribution.
+- **Tools:** **xarray, Dask** for handling large, multidimensional atmospheric data; **PyProj** for geospatial transformations. Interactive 3D plots and geospatial maps created using **Plotly** and **IPywidgets** within Jupyter Notebooks to explore different scenarios and their impact on contrail formation.
+
+### 3. Fuel Efficiency and Performance Optimization Dashboard
+
+Optimizes aircraft performance and fuel efficiency, focusing on advanced designs like the Transonic Truss-Braced Wing (TTBW) and the X-57 Maxwell electric aircraft. Used to identify optimal designs and materials for fuel efficiency.
+
+- **Data Sources:** Wind tunnel data, CFD simulations, flight test results, material performance data.
+- **Tools:** **OpenFOAM** for CFD simulations; Python integration in Jupyter to handle output data. Used **Plotly** for interactive 2D and 3D visualizations and **NetworkX** for creating interactive graph visualizations that model the relationships between different design variables and their impacts on performance.
+
+**Note:**  
+The code for these dashboards is available on my GitHub, but the data itself is proprietary and not publicly accessible.
+
+---
+

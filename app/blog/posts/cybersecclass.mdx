@@ -1,0 +1,46 @@
+---
+title: Intro to cybersecurity class
+publishedAt: 2022-05-20
+---
+
+**Update 01/2024: I've created a few projects inspired by this course! Check them out [here](https://github.com/roshda/misc-cyber/)
+
+---
+
+I just finished taking CS 82.58 Introduction to Information Systems Security at my local college -- definitely one of my favroite classes!
+
+This class was designed to prepare us for the COMPTIA+ certification, which I unfortunately did not take. 
+
+Here are some of my favorite weekly projects. I completed these on virtual machines on my own Ubuntu desktop.
+
+1. **Digital Certificates & SSL/TLS Security**
+
+   One of the first labs was about digital certificates and the SSL/TLS protocols that secure web traffic. We started by opening the browser's developer tools, navigating to the "Security" tab, and inspecting the digital certificates of various websites. We checked the certificate's issuer, validity period, and subject to make sure it was signed by a trusted Certificate Authority (CA). 
+
+   Next, we moved to the command line and used `OpenSSL` command `openssl s_client -connect [domain]:443` to establish a connection to a web server over SSL/TLS and view the server's certificate chain. I learned how SSL/TLS works to establish encrypted connections between clients and servers. By analyzing a valid certificate chain versus an invalid one, we learned how browsers verify certificates against trusted CAs and why expired or self-signed certificates can be dangerous.
+
+   We also created our own self-signed certificate using `openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes` to understand the generation process. Definitely shows the importance of key management and the role of encryption in securing data in transit.
+
+2. **Packet Sniffing with Wireshark**
+
+   One of the more in-depth labs involved using Wireshark to capture and analyze network traffic. We began by launching Wireshark on our virtual machines, selecting the network interface connected to our lab environment, and starting a capture session. The goal was to observe the unencrypted traffic between clients and servers and identify potential vulnerabilities.
+
+   The lab required us to filter specific traffic types using display filters, `http`, `dns`, or `ftp` to narrow down our search. For instance, when filtering for `http` traffic, we looked for `GET` and `POST` requests, which could reveal sensitive information (eg usernames or passwords) sent in plain text. We analyzed packet details to see headers, protocols used, and even the data being transferred.
+
+   One specific task involved setting up an `ftp` server on one virtual machine and connecting to it from another. We then captured the login credentials sent in plain text over the network. It's incredible how easily an attacker could capture credentials on an unsecured network. We then discussed how protocols like `HTTPS` and `FTPS` protect against such attacks by encrypting the data in transit.
+
+3. **Creating and Analyzing a Honeypot with Cowrie**
+
+   This week, we set up a honeypot using Cowrie, a popular SSH and Telnet honeypot. I installed Cowrie on an Ubuntu virtual machine and followed the setup instructions to configure it as a fake SSH server that mimicked a vulnerable system. We intentionally left common ports (eg 22 (SSH)) open to attract unauthorized login attempts.
+
+   After setting up Cowrie, we monitored the cowrie.log file to track the actions of any attackers who interacted with the honeypot. (There were all probably just bots) The log entries showed the commands executed by attackers. For example, some attackers attempted common passwords or tried to download malicious scripts from remote servers. It was a great way to show exactly how attackers probe systems for weaknesses and also show the importance of monitoring and logging.
+
+
+4. **Implementing and Testing Firewall Rules with `iptables`**
+
+   This week's lab focused on setting up and fine-tuning firewall rules using `iptables` on a Linux system. We started with a default "allow all" policy, which we then modified to a "deny all" policy. From there, we incrementally added rules to allow specific types of traffic. For example, we allowed incoming SSH connections on port 22 only from a trusted IP address using the command `sudo iptables -A INPUT -p tcp -s [trusted_ip] --dport 22 -j ACCEPT`.
+
+   We then tested these rules by trying to SSH into the machine from different IP addresses, and as expected, attempts from unauthorized IP addresses were blocked, showing the effectiveness of the firewall rules. We also implemented rules to allow HTTP traffic on port 80 while blocking all other incoming traffic. Using `nmap` from an external machine we verified that only the allowed services were reachable. I was a great example of "least privilege" in action. 
+
+   This lab was great to understand how firewalls work at a packet-filtering level and how they serve as a line of defense against unauthorized access.
+
