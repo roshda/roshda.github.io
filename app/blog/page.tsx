@@ -1,17 +1,13 @@
-// app/blog/page.tsx
+import { getBlogPosts } from './utils'; // Import server-side function
+import BlogClient from './BlogClient';   // Import client component for UI
 
-import { BlogPosts } from "app/components/posts";
+export default async function BlogPage() {
+  const blogPosts = getBlogPosts(); // Fetch blog posts on the server side
 
-export const metadata = {
-  title: "Blog",
-  description: "Read my blog.",
-};
-
-export default function Page() {
   return (
     <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">{'>'} find . -type l -ls</h1>
-      <BlogPosts /> {/* Show all posts */}
+      {/* Pass blog posts to the client component */}
+      <BlogClient blogPosts={blogPosts} />
     </section>
   );
 }

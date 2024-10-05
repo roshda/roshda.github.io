@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 ::selection {
   background-color: #47a3f3;
   color: #fefefe;
@@ -84,7 +85,7 @@ html {
 }
 
 .prose p {
-  @apply my-4 text-neutral-800 dark:text-neutral-200;
+  @apply my-4 text-neutral-200 dark:text-neutral-200;
 }
 
 .prose h1 {
@@ -161,5 +162,22 @@ li::marker {
 
 li {
   margin-bottom: 1rem;
+}
+
+
+.blinking-cursor {
+  font-weight: 100;
+  font-size: 1.5rem;
+  color: #00ff00;
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 

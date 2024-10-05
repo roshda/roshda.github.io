@@ -64,41 +64,38 @@ export default function GalaxyOMeter() {
     setTooltip(null);
   };
 
-  // Function to render sentiment data with stacked bar chart and subtitle
+  // render sentiment data with stacked bar chart and subtitle
   const renderSentiment = (show: string, data: SentimentData) => {
-    // Calculate widths for the bar sections
+    // calculate widths for the bar sections
     const positiveWidth = data.AveragePositive * 100;
     const neutralWidth = data.AverageNeutral * 100;
     const negativeWidth = data.AverageNegative * 100;
 
     const totalWidth = showNeutral ? positiveWidth + neutralWidth + negativeWidth : positiveWidth + negativeWidth;
 
-    // Construct Twitter search URL
+    // construct Twitter search URL
     const twitterSearchUrl = `https://twitter.com/search?q=${encodeURIComponent(show)}&src=typed_query`;
 
     return (
       <div className="mb-8 relative" key={show}>
-        {/* Show Title with Link to Twitter Search */}
         <h2 className="font-semibold text-xl mb-1">
           <a href={twitterSearchUrl} target="_blank" rel="noopener noreferrer" className="hover:underline">
             {show}
           </a>
         </h2>
-        {/* Subtitle with release date and summary */}
         <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
           {showDetails[show].releaseDate} • {showDetails[show].summary}
         </p>
 
-        {/* Stacked Bar Chart */}
         <div className="relative w-full h-6 bg-neutral-200 rounded-full mb-2 overflow-hidden">
-          {/* Positive Bar */}
+          {/* Positive bar */}
           <div
             className="absolute top-0 left-0 h-full bg-green-500 rounded-l-full cursor-pointer"
             style={{ width: `${(positiveWidth / totalWidth) * 100}%` }}
             onMouseEnter={(e) => showTooltip(e, `Positive count: ${data.CountPositive} (${data.AveragePositive.toFixed(2)}%)`)}
             onMouseLeave={hideTooltip}
           ></div>
-          {/* Neutral Bar (conditionally rendered) */}
+          {/* Neutral bar (conditionally rendered) */}
           {showNeutral && (
             <div
               className="absolute top-0 h-full bg-yellow-500 cursor-pointer"
@@ -107,7 +104,7 @@ export default function GalaxyOMeter() {
               onMouseLeave={hideTooltip}
             ></div>
           )}
-          {/* Negative Bar */}
+          {/* Negative bar */}
           <div
             className={`absolute top-0 h-full bg-red-500 cursor-pointer ${showNeutral ? '' : 'rounded-r-full'}`}
             style={{
@@ -135,7 +132,7 @@ export default function GalaxyOMeter() {
         View source code <a href="https://github.com/roshda/galaxy-o-meter" className="text-blue-500 hover:underline">here</a>.
       </p>
 
-      {/* Toggle for showing/hiding neutral sentiment */}
+      {/* toggle showing/hiding neutral sentiment */}
       <div className="flex items-center mb-6">
         <span className="mr-2 text-sm text-neutral-600 dark:text-neutral-400">Show Neutral Sentiment</span>
         <label className="relative inline-block w-10 h-6 align-middle select-none">
@@ -157,7 +154,6 @@ export default function GalaxyOMeter() {
             ></span>
           </span>
         </label>
-        {/* Additional note about hover/click functionality */}
         <span className="ml-4 text-sm text-neutral-600 dark:text-neutral-400">
           hover/click the charts below to see data 👆
         </span>
@@ -165,7 +161,6 @@ export default function GalaxyOMeter() {
 
       {Object.entries(sentimentData).map(([show, data]) => renderSentiment(show, data))}
 
-      {/* Tooltip */}
       {tooltip && (
         <div
           className="absolute bg-black text-white text-xs rounded px-2 py-1"

@@ -1,5 +1,3 @@
-// app/blog/utils.ts
-
 import fs from "fs";
 import path from "path";
 
@@ -79,9 +77,11 @@ export function getAdjacentPosts(slug: string) {
 
 export function formatDate(date: string, includeRelative = false) {
   let currentDate = new Date();
+  
   if (!date.includes("T")) {
-    date = `${date}T00:00:00`;
+    date = `${date}T00:00:00`;  // use backticks for interpolation
   }
+
   let targetDate = new Date(date);
 
   let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
@@ -100,7 +100,7 @@ export function formatDate(date: string, includeRelative = false) {
     formattedDate = "Today";
   }
 
-  const month = (targetDate.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 because getMonth() returns 0-based month
+  const month = (targetDate.getMonth() + 1).toString().padStart(2, '0'); // adding 1 because getMonth() returns 0-based month
   const day = targetDate.getDate().toString().padStart(2, '0');
   const year = targetDate.getFullYear();
   let fullDate = `${month}-${day}-${year}`;
@@ -111,6 +111,7 @@ export function formatDate(date: string, includeRelative = false) {
 
   return `${fullDate} (${formattedDate})`;
 }
+
 
 
 export function getProjects() {

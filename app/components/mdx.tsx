@@ -6,10 +6,10 @@ import React from "react";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
-    <th key={index}>{header}</th>
+    <th key={index} className="text-neutral-400 dark:text-neutral-400">{header}</th>
   ));
   let rows = data.rows.map((row, index) => (
-    <tr key={index}>
+    <tr key={index} className="text-neutral-400 dark:text-neutral-400">
       {row.map((cell, cellIndex) => (
         <td key={cellIndex}>{cell}</td>
       ))}
@@ -31,17 +31,17 @@ function CustomLink(props) {
 
   if (href.startsWith("/")) {
     return (
-      <Link href={href} {...props}>
+      <Link href={href} {...props} className="text-blue-400 dark:text-blue-400">
         {props.children}
       </Link>
     );
   }
 
   if (href.startsWith("#")) {
-    return <a {...props} />;
+    return <a {...props} className="text-blue-400 dark:text-blue-400" />;
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return <a target="_blank" rel="noopener noreferrer" {...props} className="text-blue-400 dark:text-blue-400" />;
 }
 
 function RoundedImage(props) {
@@ -50,7 +50,7 @@ function RoundedImage(props) {
 
 function Code({ children, ...props }) {
   let codeHTML = highlight(children);
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} className="text-neutral-400 dark:text-neutral-400" />;
 }
 
 function slugify(str) {
@@ -74,7 +74,7 @@ function createHeading(level) {
         React.createElement("a", {
           href: `#${slug}`,
           key: `link-${slug}`,
-          className: "anchor",
+          className: "anchor text-neutral-400 dark:text-neutral-400",
         }),
       ],
       children,

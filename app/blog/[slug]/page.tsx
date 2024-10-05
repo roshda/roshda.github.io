@@ -1,10 +1,8 @@
-// app/blog/[slug]/page.tsx
-
 import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
-import { formatDate, getBlogPosts } from "app/blog/utils"; // Make sure to have the correct imports
+import { formatDate, getBlogPosts } from "app/blog/utils"; 
 import { baseUrl } from "app/sitemap";
-import Link from "next/link"; // Import Link for navigation
+import Link from "next/link"; 
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -55,12 +53,11 @@ export function generateMetadata({ params }) {
 }
 
 export default function Blog({ params }) {
-  // Fetch all posts and sort them by date (newest first)
+  // fetch all posts and sort them by date (newest first)
   let sortedPosts = getBlogPosts().sort((a, b) => {
     return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
   });
 
-  // Find the current post based on the slug
   let postIndex = sortedPosts.findIndex((post) => post.slug === params.slug);
 
   if (postIndex === -1) {
@@ -69,7 +66,6 @@ export default function Blog({ params }) {
 
   const post = sortedPosts[postIndex];
 
-  // Corrected navigation: previousSlug moves back in time, nextSlug moves forward in time
   const previousSlug = postIndex > 0 ? sortedPosts[postIndex - 1].slug : null; // Older post
   const nextSlug = postIndex < sortedPosts.length - 1 ? sortedPosts[postIndex + 1].slug : null; // Newer post
 
@@ -101,7 +97,7 @@ export default function Blog({ params }) {
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <p className="text-sm text-neutral-400 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
@@ -109,16 +105,16 @@ export default function Blog({ params }) {
         <CustomMDX source={post.content} />
       </article>
 
-      {/* Navigation buttons for previous and next posts */}
+      {/* navigation */}
       <footer className="flex justify-end mt-8 space-x-4">
         {previousSlug && (
           <Link href={`/blog/${previousSlug}`} className="hover:underline flex items-center text-3xl">
-            &lt; {/* Right-facing chevron for going back in time (older post) */}
+            &lt; 
           </Link>
         )}
         {nextSlug && (
           <Link href={`/blog/${nextSlug}`} className="hover:underline flex items-center text-3xl">
-            &gt; {/* Left-facing chevron for going forward in time (newer post) */}
+            &gt; 
           </Link>
         )}
       </footer>
