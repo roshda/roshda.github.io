@@ -1,7 +1,7 @@
 3:I[5287,[],""]
 4:I[913,[],""]
-5:I[6397,["200","static/chunks/200-f56fe7243f127919.js","786","static/chunks/786-1b548aaa6f203fa3.js","185","static/chunks/app/layout-f41375b64f803e53.js"],"default",1]
-0:["9w9YsgApkJ-SXaNGeTRuH",[[["",{"children":["blog",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/51f6df51bb93b786.css","precedence":"next","crossOrigin":"$undefined"}]],["$","$L5",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","section",null,{"children":[["$","h1",null,{"className":"mb-8 text-2xl font-semibold tracking-tighter","children":"404 - Page Not Found"}],["$","p",null,{"className":"mb-4","children":"OH NOOOO the page you are looking for does not exist!!"}]]}],"notFoundStyles":[]}],"params":{}}]],null],null],["$L6",null]]]]
+5:I[6397,["200","static/chunks/200-f56fe7243f127919.js","786","static/chunks/786-1b548aaa6f203fa3.js","185","static/chunks/app/layout-e39d82775042390f.js"],"default",1]
+0:["pSX120vYg42V25w2jqMGE",[[["",{"children":["blog",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/71c58a7379637388.css","precedence":"next","crossOrigin":"$undefined"}]],["$","$L5",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","section",null,{"children":[["$","h1",null,{"className":"mb-8 text-2xl font-semibold tracking-tighter","children":"404 - Page Not Found"}],["$","p",null,{"className":"mb-4","children":"OH NOOOO the page you are looking for does not exist!!"}]]}],"notFoundStyles":[]}],"params":{}}]],null],null],["$L6",null]]]]
 7:I[9734,["404","static/chunks/app/blog/page-8a54de7f53e9f294.js"],"default"]
 8:T5fb,## Context
 
@@ -145,7 +145,7 @@ Create a file named `lifedata.txt` in the same directory. List the initial "aliv
    5 6
    ```
 
-Then run. It'll ask for the number of generations you want to simulate.b:T1343,**Update 01/2024: I've created a few projects inspired by this course! Check them out [here](https://github.com/roshda/misc-cyber/)
+Then run. It'll ask for the number of generations you want to simulate.b:T1325,Check out the few projects I made inspired by this course [here](https://github.com/roshda/misc-cyber/)
 
 ---
 
@@ -167,7 +167,7 @@ Here are some of my favorite weekly projects. I completed these on virtual machi
 
    One of the more in-depth labs involved using Wireshark to capture and analyze network traffic. We began by launching Wireshark on our virtual machines, selecting the network interface connected to our lab environment, and starting a capture session. The goal was to observe the unencrypted traffic between clients and servers and identify potential vulnerabilities.
 
-   The lab required us to filter specific traffic types using display filters, `http`, `dns`, or `ftp` to narrow down our search. For instance, when filtering for `http` traffic, we looked for `GET` and `POST` requests, which could reveal sensitive information (eg usernames or passwords) sent in plain text. We analyzed packet details to see headers, protocols used, and even the data being transferred.
+   The lab required us to filter specific traffic types using display filters, `http`, `dns`, or `ftp` to narrow down our search. For example when filtering for `http` traffic, we looked for `GET` and `POST` requests, which could reveal sensitive information (eg usernames or passwords) sent in plain text. We analyzed packet details to see headers, protocols used, and even the data being transferred.
 
    One specific task involved setting up an `ftp` server on one virtual machine and connecting to it from another. We then captured the login credentials sent in plain text over the network. It's incredible how easily an attacker could capture credentials on an unsecured network. We then discussed how protocols like `HTTPS` and `FTPS` protect against such attacks by encrypting the data in transit.
 
@@ -207,12 +207,12 @@ Ubuntu is stable, easy to use, and doesn’t require constant configuration. I d
 
 With Ubuntu, I can do whatever I need. Change desktop environments, run custom scripts, or mess with system settings—it’s all possible.
 
-I've spent considerable time on non-linux systems throughout the years in jobs, libraries, and volunteering. Nothing compares to the ease and freedom of ubuntu.d:Tae2,\* update 09/2024 -- I  was just approved to make public the notebooks [here](https://github.com/roshda/ames-dashboards/tree/main)!
+I've spent considerable time on non-linux systems throughout the years in jobs, libraries, and volunteering. Nothing compares to the ease and freedom of ubuntu.d:Tad8,\* update 09/2024 -- I  was just approved to make public the notebooks [here](https://github.com/roshda/ames-dashboards/tree/main)!
 
 
 I completed my NASA Ames internship this week with a presentation to Ames leadership alongside my team.
 
-For the past few months, I worked with a team of researchers looking into sustainable aviation fuel. I developed 3 Jupyter Notebooks to moden and visualize their data:
+For the past few months, I worked with a team of researchers looking into sustainable aviation fuel. I developed 3 Jupyter Notebooks to visualize their data:
 
 ### 1. Sustainable Aviation Fuel (SAF) Emissions Dashboard
 
