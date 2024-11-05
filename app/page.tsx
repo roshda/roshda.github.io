@@ -37,18 +37,19 @@ export default function Page() {
 
       {/* Content */}
       <p className="mb-4">
-        {`Hi, I'm Roshni! I study mathematics (specializing in computer science) at UCLA. I'm always learning something new and `}
+        {`Hi, I'm Roshni! I study mathematics at UCLA. I love to `}
         <Link href="/projects" className="text-neutral-300 dark:text-neutral-300 underline">
-          {`building projects.`} 
-        </Link>     
+          {`build projects`}  
+        </Link>  
+        {` and learn new technologies.`}   
       </p>
       <p className="mb-4">
-        {`I also enjoy `}
+        {`At UCLA, I play Capture the Flag challenges with Psi Beta Rho, the competitive cybersecurity team. I also enjoy `}
         <a href="/origami" className="text-neutral-300 dark:text-neutral-300 underline">{`origami`}</a>, hiking,
         {` `}
         linux, playing flute,
         {` and `}
-        <a href="blog/bookshelf" className="text-neutral-300 dark:text-neutral-300 underline">{`reading`}</a>.
+        <a href="blog/book-reviews" className="text-neutral-300 dark:text-neutral-300 underline">{`reading`}</a>. {`Check out my `} <a href="/resume" className="text-neutral-300 dark:text-neutral-300 underline">{`resume`}</a> {` for my experience, and my `} <a href="/blog" className="text-neutral-300 dark:text-neutral-300 underline">{`blog`}</a> or <a href="https://www.linkedin.com/in/roshnidave/" className="text-neutral-300 dark:text-neutral-300 underline">{`LinkedIn`}</a> to see what I'm up to now. 
       </p>     
     </section>
   );

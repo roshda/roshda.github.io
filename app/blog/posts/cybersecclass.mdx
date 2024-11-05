@@ -3,7 +3,7 @@ title: Intro to cybersecurity class
 publishedAt: 2022-05-20
 ---
 
-**Update 01/2024: I've created a few projects inspired by this course! Check them out [here](https://github.com/roshda/misc-cyber/)
+Check out the few projects I made inspired by this course [here](https://github.com/roshda/misc-cyber/)
 
 ---
 
@@ -25,7 +25,7 @@ Here are some of my favorite weekly projects. I completed these on virtual machi
 
    One of the more in-depth labs involved using Wireshark to capture and analyze network traffic. We began by launching Wireshark on our virtual machines, selecting the network interface connected to our lab environment, and starting a capture session. The goal was to observe the unencrypted traffic between clients and servers and identify potential vulnerabilities.
 
-   The lab required us to filter specific traffic types using display filters, `http`, `dns`, or `ftp` to narrow down our search. For instance, when filtering for `http` traffic, we looked for `GET` and `POST` requests, which could reveal sensitive information (eg usernames or passwords) sent in plain text. We analyzed packet details to see headers, protocols used, and even the data being transferred.
+   The lab required us to filter specific traffic types using display filters, `http`, `dns`, or `ftp` to narrow down our search. For example when filtering for `http` traffic, we looked for `GET` and `POST` requests, which could reveal sensitive information (eg usernames or passwords) sent in plain text. We analyzed packet details to see headers, protocols used, and even the data being transferred.
 
    One specific task involved setting up an `ftp` server on one virtual machine and connecting to it from another. We then captured the login credentials sent in plain text over the network. It's incredible how easily an attacker could capture credentials on an unsecured network. We then discussed how protocols like `HTTPS` and `FTPS` protect against such attacks by encrypting the data in transit.
 

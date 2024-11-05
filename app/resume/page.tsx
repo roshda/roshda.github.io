@@ -70,77 +70,59 @@ export default function Page() {
         B.S., Mathematics of Computation
       </p>
       <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">
-        Graduating 2026
+        September 2024 - December 2026
       </p>
       <ul className="list-disc list-inside mb-6">
-        <li>
-          <strong>Coursework:</strong> Data Structures, Differential Calculus, Algorithms, Machine Learning, Computer Security, Real Analysis, Statistics, Cybersecurity
-        </li>
-        <li>
-          <strong>Awards:</strong> OrigamiUSA International Scholarship, Pedersen Musisc Scholarship, SonomaHacks Hackathon
-        </li>
-        <li>
-          <strong>Organizations:</strong> ACM Cyber CTF Team, UCLA Orchestra, Bruin Origami
+        <li><strong>Coursework:</strong> Linear Algebra, Operating Systems, Real Analysis, Statistics, Discrete Structures</li>
+        <li><strong>Awards:</strong> OrigamiUSA International Scholarship, Pedersen Music Scholarship, F&C Lahm Transfer Scholarship</li>
+        <li><strong>Activities: </strong>Association for Computing Machinery, Psi Beta Rho: cybersecurity capture-the-flag (CTF) team, Bruin Chamber Musicians, Bruin Origami, LA CTF 2025
         </li>
       </ul>
 
       <h2 className="font-medium text-xl mb-4 mt-8 tracking-tighter">Skills</h2>
       <hr className="my-2 border-neutral-800 dark:border-neutral-800" />
       <ul className="list-disc list-inside mb-6">
-        <li>
-          <strong>Languages:</strong> Python, Bash, C++, SQL, JavaScript, TypeScript, HTML, CSS, Java
-        </li>
-        <li>
-          <strong>Technologies:</strong> Git, React, Next.js, Docker, AWS, Azure, SSH, Linux
-        </li>
+        <li><strong>Languages:</strong> Python, Bash, C++, SQL, JavaScript, TypeScript, HTML/CSS, Java</li>
+        <li><strong>Technologies:</strong> Git, React, Next.js, Docker, AWS, Azure, SSH, Linux, Firebase, Wordpress, GCP</li>
       </ul>
 
       <h2 className="font-medium text-xl mb-4 mt-8 tracking-tighter">Experience</h2>
       <hr className="my-2 border-neutral-800 dark:border-neutral-800" />
-      
-      <p className="font-semibold text-lg inline-block">
-        Automation Software Engineer Intern,
-      </p>
+
+      {/* Access Ingenuity */}
+      <p className="font-semibold text-lg inline-block">Software Engineer Intern,</p>
       <span className="text-lg inline-block ml-2">Access Ingenuity</span>
-      <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">
-        Nov 2023 — July 2024, SF Bay Area CA
-      </p>
+      <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">November 2023 — July 2024, San Francisco, CA</p>
       <ul className="list-disc list-inside mb-6">
-        <li>Automated project management at a local business. Azure Functions, Graph API. Reduced weekly workload by 80 hours.</li>
+        <li>Developed a project management tool to reduce company workload by 80 hours weekly. Automated remote file transfers to process and assign over 1,000 secure client files daily with OneDrive API and AES-256 encryption.</li>
+        <li>Deployed software on AWS Fargate with EventBridge scheduling, secure access control, and logging.</li>
       </ul>
 
-      <p className="font-semibold text-lg inline-block">
-        Data Science Intern,
-      </p>
+      {/* NASA Ames Research Center */}
+      <p className="font-semibold text-lg inline-block">Data Science Intern (Aviation Systems),</p>
       <span className="text-lg inline-block ml-2">NASA Ames Research Center</span>
-      <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">
-        May 2022 — Aug 2023, Mountain View CA
-      </p>
+      <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">May 2022 — March 2023, Mountain View, CA</p>
       <ul className="list-disc list-inside mb-6">
-        <li>Aviation sustainability team. Modeling fuel efficiency, contrail formation, and aircraft performance.</li>
-        <li>Jupyter Notebook and various Python libraries.</li>
+        <li>Created data dashboards to assess sustainability of selected experimental NASA Ames aircraft models and biofuels.</li>
+        <li>Processed and interpreted over 250 heterogeneous datasets to derive insights and generate over 20 interactive visualizations on fuel efficiency and aircraft performance. Presented research to Ames leadership.</li>
+        <li>Overhauled Airspace Concepts Evaluation System (ACES) software website.</li>
       </ul>
 
-      <p className="font-semibold text-lg inline-block">
-        Web Developer,
-      </p>
+      {/* North Bay Indo-American Association */}
+      <p className="font-semibold text-lg inline-block">Web Developer & Administrator,</p>
       <span className="text-lg inline-block ml-2">North Bay Indo-American Association</span>
-      <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">
-        July 2023, SF Bay Area CA
-      </p>
+      <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">January 2023, San Francisco, CA</p>
       <ul className="list-disc list-inside mb-6">
-        <li>Launched website for a local nonprofit using WordPress, DreamHost, and Google Workspace.</li>
+        <li>Solely managed website redesign for a local nonprofit. Achieved a 90% reduction in monthly cost by migrating CMS to WordPress and Google Workspace for nonprofits.</li>
+        <li>Optimized backend with database cleanup and server-side caching to reduce page load times by 30%.</li>
       </ul>
 
-      <p className="font-semibold text-lg inline-block">
-        Mathematics Tutor
-      </p>
-      <span className="text-lg inline-block ml-2"></span>
-      <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">
-        March 2023 - Present
-      </p>
+
+      {/* Mathematics Tutor */}
+      <p className="font-semibold text-lg inline-block">Mathematics Tutor</p>
+      <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">December 2022 - Present</p>
       <ul className="list-disc list-inside mb-6">
-        <li>Tutored math to ~20 high school and college students.</li>
+        <li>Calculus and Statistics tutor for 20 high school and college students.</li>
       </ul>
 
       <h2 className="font-medium text-xl mb-4 mt-8 tracking-tighter">Projects</h2>
@@ -148,22 +130,23 @@ export default function Page() {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold">
-          <a href="https://your-project-link.com/lymphoma-tracker" target="_blank" className="text-blue-400 dark:text-blue-400">
-            Lymphoma Tracker
+          <a href="https://github.com/roshda/lymphoma-lens" target="_blank" className="text-blue-400 dark:text-blue-400">
+            Lymphoma Tracker 🔒
           </a>
         </h3>
         <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-          Tool to track and identify lesions for my weekly lymphoma treatments. Database to log weekly progress and visualize trends over time. Supervised ML model to detect lesions.
+        Tool to identify and track lesions for my weekly lymphoma treatments. Trained a supervised machine learning model on
+        my own labeled data to detect lesions and built a web platform to easily count and visualize trends.
         </p>
         <p className="text-neutral-400 dark:text-neutral-400 text-sm">
-          <strong></strong> Machine Learning, Computer Vision, Data Analysis, Python, OpenCV
+          <strong></strong> Machine Learning, Hugging Face Spaces, Gradio, Python, OpenCV
         </p>
       </div>
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold">
-          <a href="https://your-project-link.com/nasa-dashboards" target="_blank" className="text-blue-400 dark:text-blue-400">
-            NASA Dashboards
+          <a href="https://roshda.github.io/blog/nasa" target="_blank" className="text-blue-400 dark:text-blue-400">
+            NASA Dashboards 🔒
           </a>
         </h3>
         <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
@@ -176,7 +159,7 @@ export default function Page() {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold">
-          <a href="https://your-project-link.com/linux-security-dashboard" target="_blank" className="text-blue-400 dark:text-blue-400">
+          <a href="https://github.com/roshda/misc-cyber/blob/main/linux_dashboard.py" target="_blank" className="text-blue-400 dark:text-blue-400">
             Linux Security Dashboard
           </a>
         </h3>
@@ -190,7 +173,7 @@ export default function Page() {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold">
-          <a href="https://your-project-link.com/origami-portfolio" target="_blank" className="text-blue-400 dark:text-blue-400">
+          <a href="https://roshda.github.io/origami" target="_blank" className="text-blue-400 dark:text-blue-400">
             Origami Portfolio
           </a>
         </h3>
@@ -204,7 +187,7 @@ export default function Page() {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold">
-          <a href="https://your-project-link.com/secure-pwnd" target="_blank" className="text-blue-400 dark:text-blue-400">
+          <a href="https://github.com/roshda/misc-cyber/blob/main/secure-pwnd.sh" target="_blank" className="text-blue-400 dark:text-blue-400">
             Secure pwnd
           </a>
         </h3>
@@ -218,12 +201,12 @@ export default function Page() {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold">
-          <a href="https://your-project-link.com/phishing-text-classifier" target="_blank" className="text-blue-400 dark:text-blue-400">
-            Is it a phishing text?
+          <a href="https://github.com/roshda/phishing-email/" target="_blank" className="text-blue-400 dark:text-blue-400">
+            Phishing Email Classifier
           </a>
         </h3>
         <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-          ML classifier to distinguish phishing texts from real texts.
+        Machine learning model, logistic regression classifier to identify phishing emails.
         </p>
         <p className="text-neutral-400 dark:text-neutral-400 text-sm">
           <strong></strong> Python, Machine Learning
@@ -232,7 +215,7 @@ export default function Page() {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold">
-          <a href="https://your-project-link.com/galaxy-o-meter" target="_blank" className="text-blue-400 dark:text-blue-400">
+          <a href="https://roshda.github.io/galaxy-o-meter" target="_blank" className="text-blue-400 dark:text-blue-400">
             Galaxy-O-Meter
           </a>
         </h3>
@@ -246,7 +229,7 @@ export default function Page() {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold">
-          <a href="https://your-project-link.com/wardrobe-tracker" target="_blank" className="text-blue-400 dark:text-blue-400">
+          <a href="https://roshni.streamlit.app/" target="_blank" className="text-blue-400 dark:text-blue-400">
             Wardrobe Tracker
           </a>
         </h3>
@@ -260,7 +243,7 @@ export default function Page() {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold">
-          <a href="https://your-project-link.com/xkcd-password-generator" target="_blank" className="text-blue-400 dark:text-blue-400">
+          <a href="https://github.com/roshda/misc-cyber/blob/main/xkcd-password.py" target="_blank" className="text-blue-400 dark:text-blue-400">
             XKCD Password Generator
           </a>
         </h3>

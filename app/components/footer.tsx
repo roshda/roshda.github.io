@@ -46,7 +46,7 @@ export default function Footer() {
             className="flex items-center transition-all hover:text-neutral-100 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
             target="_blank"
-            href="https://github.com/roshda/blog"
+            href="https://github.com/roshda/roshda.github.io"
           >
             <ArrowIcon />
             <p className="ml-2 h-7">view source</p>
@@ -54,7 +54,7 @@ export default function Footer() {
         </li>
       </ul>
       <p className="mt-8 text-neutral-300 dark:text-neutral-300">
-        © {new Date().getFullYear()} MIT Licensed
+        © Roshni Dave {new Date().getFullYear()} 
       </p>
     </footer>
   );
