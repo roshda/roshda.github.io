@@ -2,11 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://portfolio-blog-starter.vercel.app</loc>
-<lastmod>2024-11-05</lastmod>
+<lastmod>2024-12-30</lastmod>
 </url>
 <url>
 <loc>https://portfolio-blog-starter.vercel.app/blog</loc>
-<lastmod>2024-11-05</lastmod>
+<lastmod>2024-12-30</lastmod>
+</url>
+<url>
+<loc>https://portfolio-blog-starter.vercel.app/blog/USC</loc>
+<lastmod>2024-11-30</lastmod>
 </url>
 <url>
 <loc>https://portfolio-blog-starter.vercel.app/blog/berkeleyAI</loc>
@@ -31,6 +35,10 @@
 <url>
 <loc>https://portfolio-blog-starter.vercel.app/blog/first-job</loc>
 <lastmod>2024-07-31</lastmod>
+</url>
+<url>
+<loc>https://portfolio-blog-starter.vercel.app/blog/linkedin</loc>
+<lastmod>2024-12-20</lastmod>
 </url>
 <url>
 <loc>https://portfolio-blog-starter.vercel.app/blog/linux</loc>

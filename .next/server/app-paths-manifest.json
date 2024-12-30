@@ -1,14 +1,14 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/blog/page": "app/blog/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/projects/page": "app/projects/page.js",
   "/galaxy-o-meter/page": "app/galaxy-o-meter/page.js",
   "/origami/page": "app/origami/page.js",
-  "/page": "app/page.js",
-  "/projects/page": "app/projects/page.js",
-  "/resume/page": "app/resume/page.js",
-  "/robots.txt/route": "app/robots.txt/route.js",
   "/rss/route": "app/rss/route.js",
+  "/page": "app/page.js",
+  "/resume/page": "app/resume/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
   "/projects/[slug]/page": "app/projects/[slug]/page.js",
-  "/blog/[slug]/page": "app/blog/[slug]/page.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js"
+  "/blog/[slug]/page": "app/blog/[slug]/page.js"
 }

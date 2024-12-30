@@ -1,4 +1,4 @@
-// File: /home/rd/Downloads/roshda.github.io (copy)/app/origami/page.tsx
+// File: /Users/rd/Documents/GitHub/roshda.github.io/app/origami/page.tsx
 import * as entry from '../../../../app/origami/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

@@ -1,4 +1,4 @@
-// File: /home/rd/Downloads/roshda.github.io (copy)/app/page.tsx
+// File: /Users/rd/Documents/GitHub/roshda.github.io/app/page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

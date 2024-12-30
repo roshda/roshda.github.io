@@ -1,4 +1,4 @@
-// File: /home/rd/Downloads/roshda.github.io (copy)/app/galaxy-o-meter/page.tsx
+// File: /Users/rd/Documents/GitHub/roshda.github.io/app/galaxy-o-meter/page.tsx
 import * as entry from '../../../../app/galaxy-o-meter/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

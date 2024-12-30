@@ -1,3 +1,5 @@
+
+
 'use client'; 
 import { useEffect, useState } from "react";
 
@@ -31,7 +33,7 @@ export default function Page() {
     <section>
       <div className="mb-8">
         <p className="text-xl font-mono text-neutral-400 dark:text-neutral-400">
-          <span>{'rd@ubuntu:~$ '}</span>
+          <span>{'roshni@m3:~$ '}</span>
           <span>{typedText}</span>
           <span className="blinking-cursor">|</span> 
         </p>
@@ -70,20 +72,20 @@ export default function Page() {
         B.S., Mathematics of Computation
       </p>
       <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">
-        September 2024 - December 2026
+        September 2024 - May 2026
       </p>
       <ul className="list-disc list-inside mb-6">
-        <li><strong>Coursework:</strong> Linear Algebra, Operating Systems, Real Analysis, Statistics, Discrete Structures</li>
+        <li><strong>Coursework:</strong> Linear Algebra, Object Oriented Programming, Real Analysis, Statistics, Discrete Structures</li>
         <li><strong>Awards:</strong> OrigamiUSA International Scholarship, Pedersen Music Scholarship, F&C Lahm Transfer Scholarship</li>
-        <li><strong>Activities: </strong>Association for Computing Machinery, Psi Beta Rho: cybersecurity capture-the-flag (CTF) team, Bruin Chamber Musicians, Bruin Origami, LA CTF 2025
-        </li>
       </ul>
 
-      <h2 className="font-medium text-xl mb-4 mt-8 tracking-tighter">Skills</h2>
+      <h2 className="font-medium text-xl mb-4 mt-8 tracking-tighter">Activities</h2>
       <hr className="my-2 border-neutral-800 dark:border-neutral-800" />
       <ul className="list-disc list-inside mb-6">
-        <li><strong>Languages:</strong> Python, Bash, C++, SQL, JavaScript, TypeScript, HTML/CSS, Java</li>
-        <li><strong>Technologies:</strong> Git, React, Next.js, Docker, AWS, Azure, SSH, Linux, Firebase, Wordpress, GCP</li>
+        <li><strong>LA Capture-the-Flag 2025:</strong> Leading marketing and outreach for UCLA’s student-run cybersecurity competition with 1,700+ participants. Designing social media, print, merchandise, and sponsorship materials.</li>
+        <li><strong>Psi Beta Rho:</strong> Solving capture-the-flag cybersecurity competitions with UCLA’s team (top 10 in the United States).</li>
+        <li><strong>Bruin Chamber Musicians:</strong> Performing flute at on-campus events with a rotating group of musicians. Compiling and arranging appropriate music libraries.</li>
+        <li><strong>Bruin Origami:</strong> Teaching and folding origami for UCLA students and the LA community.</li>
       </ul>
 
       <h2 className="font-medium text-xl mb-4 mt-8 tracking-tighter">Experience</h2>
@@ -94,17 +96,17 @@ export default function Page() {
       <span className="text-lg inline-block ml-2">Access Ingenuity</span>
       <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">November 2023 — July 2024, San Francisco, CA</p>
       <ul className="list-disc list-inside mb-6">
-        <li>Developed a project management tool to reduce company workload by 80 hours weekly. Automated remote file transfers to process and assign over 1,000 secure client files daily with OneDrive API and AES-256 encryption.</li>
-        <li>Deployed software on AWS Fargate with EventBridge scheduling, secure access control, and logging.</li>
+        <li>Developed project management software that reduced company workload by 80 hours per week. Automated remote file transfers to process and assign over 1,000 HIPAA-secured client files daily using OneDrive API.</li>
+        <li>Architected and deployed scalable automation on AWS Fargate, implementing scheduling, access control, and logging mechanisms.</li>
       </ul>
 
       {/* NASA Ames Research Center */}
-      <p className="font-semibold text-lg inline-block">Data Science Intern (Aviation Systems),</p>
+      <p className="font-semibold text-lg inline-block">Aviation Systems Intern,</p>
       <span className="text-lg inline-block ml-2">NASA Ames Research Center</span>
       <p className="italic text-sm text-neutral-400 dark:text-neutral-400 mb-4">May 2022 — March 2023, Mountain View, CA</p>
       <ul className="list-disc list-inside mb-6">
-        <li>Created data dashboards to assess sustainability of selected experimental NASA Ames aircraft models and biofuels.</li>
-        <li>Processed and interpreted over 250 heterogeneous datasets to derive insights and generate over 20 interactive visualizations on fuel efficiency and aircraft performance. Presented research to Ames leadership.</li>
+        <li>Built data dashboards to assess sustainability of selected experimental NASA Ames aircraft models and biofuels.</li>
+        <li>Processed and interpreted over 250 datasets to generate over 20 visualizations on fuel efficiency and aircraft performance. Presented research to Ames leadership.</li>
         <li>Overhauled Airspace Concepts Evaluation System (ACES) software website.</li>
       </ul>
 
@@ -116,7 +118,6 @@ export default function Page() {
         <li>Solely managed website redesign for a local nonprofit. Achieved a 90% reduction in monthly cost by migrating CMS to WordPress and Google Workspace for nonprofits.</li>
         <li>Optimized backend with database cleanup and server-side caching to reduce page load times by 30%.</li>
       </ul>
-
 
       {/* Mathematics Tutor */}
       <p className="font-semibold text-lg inline-block">Mathematics Tutor</p>

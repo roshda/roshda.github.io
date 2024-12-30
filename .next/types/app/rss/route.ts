@@ -1,4 +1,4 @@
-// File: /home/rd/Downloads/roshda.github.io (copy)/app/rss/route.ts
+// File: /Users/rd/Documents/GitHub/roshda.github.io/app/rss/route.ts
 import * as entry from '../../../../app/rss/route.js'
 import type { NextRequest } from 'next/server.js'
 

@@ -5,13 +5,25 @@
         <link>https://portfolio-blog-starter.vercel.app</link>
         <description>This is my portfolio RSS feed</description>
         <item>
+          <title>LinkedIn Games</title>
+          <link>https://portfolio-blog-starter.vercel.app/blog/linkedin</link>
+          <description></description>
+          <pubDate>Fri, 20 Dec 2024 00:00:00 GMT</pubDate>
+        </item>
+<item>
+          <title>USC CTF</title>
+          <link>https://portfolio-blog-starter.vercel.app/blog/USC</link>
+          <description>my writeup</description>
+          <pubDate>Sat, 30 Nov 2024 00:00:00 GMT</pubDate>
+        </item>
+<item>
           <title>Deadface CTF</title>
           <link>https://portfolio-blog-starter.vercel.app/blog/deadfacectf</link>
           <description></description>
           <pubDate>Tue, 22 Oct 2024 00:00:00 GMT</pubDate>
         </item>
 <item>
-          <title>Ubuntu is awesome</title>
+          <title>I love ubuntu</title>
           <link>https://portfolio-blog-starter.vercel.app/blog/linux</link>
           <description></description>
           <pubDate>Tue, 10 Sep 2024 00:00:00 GMT</pubDate>

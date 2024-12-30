@@ -1,9 +1,108 @@
 3:I[5287,[],""]
 4:I[913,[],""]
-5:I[6397,["200","static/chunks/200-f56fe7243f127919.js","786","static/chunks/786-1b548aaa6f203fa3.js","185","static/chunks/app/layout-e39d82775042390f.js"],"default",1]
-0:["flCTgtnbZZ4lZkqvwezpD",[[["",{"children":["blog",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/71c58a7379637388.css","precedence":"next","crossOrigin":"$undefined"}]],["$","$L5",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","section",null,{"children":[["$","h1",null,{"className":"mb-8 text-2xl font-semibold tracking-tighter","children":"404 - Page Not Found"}],["$","p",null,{"className":"mb-4","children":"The page you are looking for does not exist!"}]]}],"notFoundStyles":[]}],"params":{}}]],null],null],["$L6",null]]]]
-7:I[9734,["404","static/chunks/app/blog/page-8a54de7f53e9f294.js"],"default"]
-8:T5fb,## Context
+5:I[6397,["200","static/chunks/200-f56fe7243f127919.js","786","static/chunks/786-1b548aaa6f203fa3.js","185","static/chunks/app/layout-6d5156c3845bc099.js"],"default",1]
+0:["J004lDHJFxfWkz_aSqQaV",[[["",{"children":["blog",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/262d7f994a7ba568.css","precedence":"next","crossOrigin":"$undefined"}]],["$","$L5",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","section",null,{"children":[["$","h1",null,{"className":"mb-8 text-2xl font-semibold tracking-tighter","children":"404 - Page Not Found"}],["$","p",null,{"className":"mb-4","children":"The page you are looking for does not exist!"}]]}],"notFoundStyles":[]}],"params":{}}]],null],null],["$L6",null]]]]
+7:I[9734,["404","static/chunks/app/blog/page-8cb6ef55e8ffac1e.js"],"default"]
+8:Tda8,This is my writeup for the "Pineapple" (forensics - network analysis) challenge at USC CTF 2024.
+
+
+In this challenge, we were given a .pcapng file which is basically a type of packet capture file that shows intercepted network traffic. Our task was to examine this traffic to uncover any data that might reveal a flag.
+
+
+Open the File in Wireshark
+
+Load pineapple.pcapng in Wireshark, a tool to analyze network traffic/packets. This shows all the packets in the capture, with info like source and destination IPs, protocols, and a summary for each packet. I filtered by HTTP traffic because it usually includes readable data, which could contain usernames, file uploads, or other useful information. 
+
+
+
+Form Data and POST Requests
+
+I first followed the HTTP stream for this application form url encoded packet and I saw this form data with some info:
+
+- username: jbarker
+- filename: hoolicon
+- filepw: conjoined_TRIANGLES
+
+
+
+
+This means that it probably had something to do with a file submission involving a filename (hoolicon) and an encryption key (conjoined_TRIANGLES) we could use to view the file.
+
+Then I looked at another POST request (type of HTTP request used to send data to a server) TCP stream to find this data for this hoolicon file. (A TCP stream is a way to view the flow of data, packets, between two devices over the TCP (Transmission Control Protocol) as a stream/conversation)
+
+It showed that the data was in 7z format which is like a compressed format that supports encryption as well.  
+
+
+
+I also saw this metadata at the bottom showing that the flag image is probably in the archive …
+
+"f.l.a.g.i.m.g....p.n.g"
+
+Then I exported this. I saved the raw data as multipart_data.bin so I could use binwalk to extract the embedded 7z archive. The decimal part is saying that the first 175 bytes of the bin file are not in the 7zip archive format. (This is from any HTTP headers included when we downloaded the stream.)
+
+rd@rd-Latitude-E7270:~$ binwalk –extract multipart_data.bin
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------
+175           0xAF            7-zip archive data, version 0.4
+
+
+I ran this command to cut out the 175 bytes of multipart_data.bin.
+
+**rd@rd-Latitude-E7270**:~$ dd if=multipart_data.bin of=hoolicon.7z bs=1 skip=175
+452819+0 records in
+452819+0 records out
+452819 bytes (453 kB, 442 KiB) copied, 2.089 s, 217 kB/s
+
+
+This command extracted the .7z file from the binary data, saving it as hoolicon.7z
+
+Decrypt and Extract hoolicon.7z
+
+Since the old form data included filepw=conjoined_TRIANGLES, we used this as the password to decrypt the archive:
+
+rd@rd-Latitude-E7270:~$ 7z x hoolicon.7z -pconjoined_TRIANGLES
+
+7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_US.UTF-8,Utf16=on,HugeFiles=on,64 bits,4 CPUs Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz (406E3),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 452819 bytes (443 KiB)
+
+Extracting archive: hoolicon.7z
+
+WARNINGS:
+There are data after the end of archive
+
+--
+Path = hoolicon.7z
+Type = 7z
+WARNINGS:
+There are data after the end of archive
+Physical Size = 452754
+Tail Size = 65
+Headers Size = 162
+Method = LZMA2:19 7zAES
+Solid = -
+Blocks = 1
+
+Everything is Ok
+
+Archives with Warnings: 1
+
+Warnings: 1
+Size:       452550
+Compressed: 452819
+
+
+
+This produced the flagimg.png
+
+rd@rd-Latitude-E7270:~$ xdg-open flagimg.png
+
+
+
+which showed the flag: CYBORG\{pe4cefaRe_4x09\}9:T5fb,## Context
 
 I got into UC Berkeley's AI hackathon (biggest in the world!), and attended it this weekend. 
 
@@ -20,7 +119,13 @@ Another revelation is that winning teams plan out their projects weeks, if not m
 
 I didn't think about this at first, but it makes a lot of sense considering the scale of the event and the limited number of large ($50k investment!!) prizes. 
 
-Overall -- I'm super hyped to attend the third rendition of this hackathon next year! (preferably with a better plan this time)9:Td63,Updating this as I read new titles. A non exhaustive list, along with my thoughts on them.
+Overall -- I'm super hyped to attend the third rendition of this hackathon next year! (preferably with a better plan this time)a:Tdf5,Updating this as I read new titles. A non exhaustive list, along with my thoughts on them.
+
+
+## Beggar's Bedlam by Nabarun Bhattacharya, translated by Rijula Das
+**Date:** 1/2025  
+**Thoughts:** Really interesting read. I love magigal realism and this novel delivered. Interesting take on the politcal landscape and culture of West Bengal/Kolkata.
+
 
 ## Daughter of the Moon Goddess by Sue Lynn Tan
 **Date:** 10/2024  
@@ -41,7 +146,7 @@ Overall -- I'm super hyped to attend the third rendition of this hackathon next 
 
 ## Fourth Wing by Rebecca Yarros
 **Date:** 02/2024  
-**Thoughts:** Yes, I saw this on social media and it lived up to neither the drooling nor scathing critiques. I read it described on the back cover as "nothing you've read before," but this could not be farther from the truth as it leans heavily on every YA trope you can think of. Still, it was super readable and mildly entertaining.
+**Thoughts:** I saw this on social media. I read it described on the back cover as "nothing you've read before," but this could not be farther from the truth as it leans heavily on every YA trope you can think of. Mildly entertaining.
 
 ## Lady Tan's Circle of Women by Lisa See
 **Date:** 01/2024  
@@ -57,7 +162,7 @@ Overall -- I'm super hyped to attend the third rendition of this hackathon next 
 
 ## All the Light We Cannot See by Anthony Doerr
 **Date:** 04/2023  
-**Thoughts:** This was a hauntingly beautiful read that goes through the lives of a blind French girl and a German soldier during World War II. Incredible prose and narrative.
+**Thoughts:** This was a beautiful read that goes through the lives of a blind French girl and a German soldier during World War II. Incredible prose and narrative.
 
 ## The Four Winds by Kristin Hannah
 **Date:** 01/2023  
@@ -85,7 +190,7 @@ Overall -- I'm super hyped to attend the third rendition of this hackathon next 
 
 ## Klara and the Sun by Kazuo Ishiguro
 **Date:** 10/2021  
-**Thoughts:** Very melancholic and reflective read about a sick child and her AI(?) companion. Beautiful writing.a:T12d4,At the end of this week I'll have taken the final exam for CS10B, the second semester of C++ at my college. I found this class significantly harder than the first, but the projects were challenging and taught me a lot about algorithms and the language. Here's some of my learnings + a walkthrough of [my favorite project](https://github.com/roshda/cnwy-game-of-life/). 
+**Thoughts:** Very melancholic and reflective read about a sick child and her AI(?) companion. Beautiful writing.b:T12d4,At the end of this week I'll have taken the final exam for CS10B, the second semester of C++ at my college. I found this class significantly harder than the first, but the projects were challenging and taught me a lot about algorithms and the language. Here's some of my learnings + a walkthrough of [my favorite project](https://github.com/roshda/cnwy-game-of-life/). 
 
 ### Some C++ Basics
 C++ is a statically typed and compiled language, meaning code is converted to machine code by a compiler. Faster execution than interpreted languages.
@@ -150,7 +255,7 @@ Create a file named `lifedata.txt` in the same directory. List the initial "aliv
    5 6
    ```
 
-Then run. It'll ask for the number of generations you want to simulate.b:T1325,Check out the few projects I made inspired by this course [here](https://github.com/roshda/misc-cyber/)
+Then run. It'll ask for the number of generations you want to simulate.c:T1325,Check out the few projects I made inspired by this course [here](https://github.com/roshda/misc-cyber/)
 
 ---
 
@@ -189,7 +294,7 @@ Here are some of my favorite weekly projects. I completed these on virtual machi
 
    We then tested these rules by trying to SSH into the machine from different IP addresses, and as expected, attempts from unauthorized IP addresses were blocked, showing the effectiveness of the firewall rules. We also implemented rules to allow HTTP traffic on port 80 while blocking all other incoming traffic. Using `nmap` from an external machine we verified that only the allowed services were reachable. I was a great example of "least privilege" in action. 
 
-   This lab was great to understand how firewalls work at a packet-filtering level and how they serve as a line of defense against unauthorized access.c:T411,I participated in [Deadface CTF (capture the flag)](https://ctf.deadface.io/) this weekend with Psi Beta Rho, UCLA's competitive cybersecurity team. This was my first big CTF and I learned a lot about the different categories of challenges. 
+   This lab was great to understand how firewalls work at a packet-filtering level and how they serve as a line of defense against unauthorized access.d:T411,I participated in [Deadface CTF (capture the flag)](https://ctf.deadface.io/) this weekend with Psi Beta Rho, UCLA's competitive cybersecurity team. This was my first big CTF and I learned a lot about the different categories of challenges. 
 
 While I'm relatively new to CTFs, I've used linux my whole life and I found that helped a lot this weekend, especially in scripting and automation as well as general command line tools.
 
@@ -197,7 +302,7 @@ I found at least one flag in most of the categories, but I really enjoyed the pr
 
 After the CTF ended, I presented my solution to the ["Price Check"](https://ctf.deadface.io/challenges#Price%20Check-20) problem. A quick overview: I noticed that the data in the provided csv was just 0s or 255s, and I realized that was probably a qr code. The problem also mentioned that users might "scan" something. So I wrote a python script to generate a qr code from the image. The flag was revealed when you scan the qr code. 
 
-Can't wait for the next competition in a couple weeks!d:T5d4,I've debated whether I should buy a new, mainstream laptop for the past year in preparation for university. It’s now 2 weeks until move in, and I decided (for now) to stick with the trusty 2015 Dell laptop running various Linux distros over the past six years (of course, I've been back with Ubuntu for the past few years). Here's some reasons why
+Can't wait for the next competition in a couple weeks!e:T5d4,I've debated whether I should buy a new, mainstream laptop for the past year in preparation for university. It’s now 2 weeks until move in, and I decided (for now) to stick with the trusty 2015 Dell laptop running various Linux distros over the past six years (of course, I've been back with Ubuntu for the past few years). Here's some reasons why
 
 
 - coding experience  
@@ -220,7 +325,7 @@ Ubuntu is stable, easy to use, and doesn’t require constant configuration. I d
 
 With Ubuntu, I can do whatever I need. Change desktop environments, run custom scripts, or mess with system settings—it’s all possible.
 
-I've spent considerable time on non-linux systems throughout the years in jobs, libraries, and volunteering. Nothing compares to the ease and freedom of ubuntu.e:Tb72,*Update 09/2024 -- Contact me for access to the notebooks [here](https://github.com/roshda/ames-dashboards/tree/main)!*
+I've spent considerable time on non-linux systems throughout the years in jobs, libraries, and volunteering. Nothing compares to the ease and freedom of ubuntu.f:Tb72,*Update 09/2024 -- Contact me for access to the notebooks [here](https://github.com/roshda/ames-dashboards/tree/main)!*
 
 I completed my NASA Ames internship this week with a presentation to Ames leadership alongside my team.
 
@@ -251,7 +356,7 @@ Explores fuel efficiency and performance of different aircraft models, including
 - **Insights:** Visualized key patterns in fuel efficiency across different wing designs and biofuel types to direct research.
 
 **Note:**  
-The code for these dashboards is available on my GitHub on request, but the data is proprietary.f:Tdd0,I received acceptances to most UCs after one year in community college. While one year isn't necessarily an ideal timeline, I'm proud of my planning and would like to share some of my tips for successfully transferring.
+The code for these dashboards is available on my GitHub on request, but the data is proprietary.10:Tdd0,I received acceptances to most UCs after one year in community college. While one year isn't necessarily an ideal timeline, I'm proud of my planning and would like to share some of my tips for successfully transferring.
 
 [Fun fact](https://www.ppic.org/publication/policy-brief-strengthening-californias-transfer-pathway/#:~:text=Despite%20recent%20progress%2C%20transfer%20rates,do%20so%20within%20two%20years.): *only 10% of California community college students transfer within two years; 19% in four :(*
 
@@ -295,6 +400,6 @@ Nothing in life is all sunshine and rainbows. While my CC experience was mostly 
 
 
 
-**assist.org is starting to roll out an API... excited to build a tool with this in the future*2:["$","section",null,{"children":["$","$L7",null,{"blogPosts":[{"metadata":{"title":"UC Berkeley AI Hackathon","publishedAt":"2024-06-23"},"slug":"berkeleyAI","content":"$8"},{"metadata":{"title":"Bookshelf","publishedAt":"2022-10-03"},"slug":"book-reviews","content":"$9"},{"metadata":{"title":"Two semesters of C++","summary":"Let's bet boldly, knowing that we're playing in a field that's been tilted in our favor by technology, culture, and the spirit of our times.","publishedAt":"2024-05-11"},"slug":"cpp","content":"$a"},{"metadata":{"title":"Intro to cybersecurity class","publishedAt":"2022-05-20"},"slug":"cybersecclass","content":"$b"},{"metadata":{"title":"Deadface CTF","publishedAt":"2024-10-22"},"slug":"deadfacectf","content":"$c"},{"metadata":{"title":"Working part time at a local company","publishedAt":"2024-07-31"},"slug":"first-job","content":"Just finished working part time at Access Ingenuity, a local company for which I was writing software to automate their file and project management. \n\nIt was interesting to be the only person writing code and building internal tools for this company. I learned a lot about writing proper code, as I took it upon myself to make sure I followed good software engineering practices like writing clean/readable code with comments, writing documentation, being responsible about Git and version control, and continuously communicating with the team to make sure the processes were up to date.\n\nI'm grateful for the (very important) experience of teaching myself new skills and practices. \n\nNext stop: joining a company where I can learn from experienced mentors, work with an established codebase, and be closer to tech overall."},{"metadata":{"title":"Ubuntu is awesome","publishedAt":"2024-09-10"},"slug":"linux","content":"$d"},{"metadata":{"title":"Building a lymphoma tracker","publishedAt":"2024-02-01"},"slug":"lymphoma","content":"I don't write about this much, but I've been undergoing treatment for a form of lymphoma for the past couple years. I stand in front of a panel of UVB light for a few minutes, and when the bulbs turn off, I record the remaining lesions into a spreadsheet (a tool I propsed creating myself, which has already helped in identifying better treatment plans).\n\nA while ago I had the idea to get more comprehensive insights, and also automate the tedious counting process using computer vision. Since it's summer now and I have time, here's how I built [the Lymphoma Lens](https://github.com/roshda/lymphoma-lens).  \n\n\n** coming soon I still need to write this"},{"metadata":{"title":"NASA internship recap","publishedAt":"2023-04-02"},"slug":"nasa","content":"$e"},{"metadata":{"title":"Origami tips","publishedAt":"2023-10-12"},"slug":"origamitips","content":"- Practice folding what you like\n- start small and simple\n    - if you don't, you'll fail trying to fold the hard models fast and become discouraged\n        - I think this is good general life advice actually\n- follow inspiring artists on instagram\n    - there's also a big global community on twitter\n- paper type only matters for super complex origami\n\n\nAs with most things, the only way to get better is to actually do it."},{"metadata":{"title":"OrigamiUSA Convention","summary":"","publishedAt":"2023-07-20"},"slug":"origamiusa","content":"The OrigamUSA convention hosted in NYC this weekend was awesome! \n\nI met some of the coolest minds in origami and took 10 classes over 3 days. \n\nSome highlights were:\n\n- meeting my favorite artists: Boice Wong, John Montroll, Brian Chan Meenakshi Mukherji, and Robert Lang \n- learning origami from the special guets, Miyuki Kawamura and Bodo Haag\n- witnessing the Guinness World Record \"largest origami swan\" being folded\n- meeting other awesome folders from across the country\n- seeing an exhibit of some of the best orrigami in the world, and displaying some of my own works at the exhibit\n- grabbing lots of new paper from the shop, courtesy of the scholarship\n\nThis convention has definitely fueled my love for origami even more and I can't wait to fold more :)"},{"metadata":{"title":"Outfit Tracking & Visualization","publishedAt":"2024-06-23"},"slug":"outfits","content":"I started tracking all of my clothes so I could visualize my wear habits [here](https://roshni.streamlit.app). \nFor ease of logging, I use iOS shortcuts to automatically create entries in a google sheet, which is then parsed by the streamlit app to provide live, low maintenance daily updates."},{"metadata":{"title":"Transferring to a UC","summary":"A guide to transferring to a University of California","publishedAt":"2024-09-02"},"slug":"uc-transfer","content":"$f"}]}]}]
+**assist.org is starting to roll out an API... excited to build a tool with this in the future*2:["$","section",null,{"children":["$","$L7",null,{"blogPosts":[{"metadata":{"title":"USC CTF","summary":"my writeup","publishedAt":"2024-11-30"},"slug":"USC","content":"$8"},{"metadata":{"title":"UC Berkeley AI Hackathon","publishedAt":"2024-06-23"},"slug":"berkeleyAI","content":"$9"},{"metadata":{"title":"Bookshelf","publishedAt":"2022-10-03"},"slug":"book-reviews","content":"$a"},{"metadata":{"title":"Two semesters of C++","summary":"Let's bet boldly, knowing that we're playing in a field that's been tilted in our favor by technology, culture, and the spirit of our times.","publishedAt":"2024-05-11"},"slug":"cpp","content":"$b"},{"metadata":{"title":"Intro to cybersecurity class","publishedAt":"2022-05-20"},"slug":"cybersecclass","content":"$c"},{"metadata":{"title":"Deadface CTF","publishedAt":"2024-10-22"},"slug":"deadfacectf","content":"$d"},{"metadata":{"title":"Working part time at a local company","publishedAt":"2024-07-31"},"slug":"first-job","content":"Just finished working part time at Access Ingenuity, a local company for which I was writing software to automate their file and project management. \n\nIt was interesting to be the only person writing code and building internal tools for this company. I learned a lot about writing proper code, as I took it upon myself to make sure I followed good software engineering practices like writing clean/readable code with comments, writing documentation, being responsible about Git and version control, and continuously communicating with the team to make sure the processes were up to date.\n\nI'm grateful for the (very important) experience of teaching myself new skills and practices. \n\nNext stop: joining a company where I can learn from experienced mentors, work with an established codebase, and be closer to tech overall."},{"metadata":{"title":"LinkedIn Games","publishedAt":"2024-12-20"},"slug":"linkedin","content":"If you know me, you know about my LinkedIn games addiction."},{"metadata":{"title":"I love ubuntu","publishedAt":"2024-09-10"},"slug":"linux","content":"$e"},{"metadata":{"title":"Building a lymphoma tracker","publishedAt":"2024-02-01"},"slug":"lymphoma","content":"I don't write about this much, but I've been undergoing treatment for a form of lymphoma for the past couple years. I stand in front of a panel of UVB light for a few minutes, and when the bulbs turn off, I record the remaining lesions into a spreadsheet (a tool I propsed creating myself, which has already helped in identifying better treatment plans).\n\nA while ago I had the idea to get more comprehensive insights, and also automate the tedious counting process using computer vision. Since it's summer now and I have time, here's how I built [the Lymphoma Lens](https://github.com/roshda/lymphoma-lens).  \n\n\n** coming soon I still need to write this"},{"metadata":{"title":"NASA internship recap","publishedAt":"2023-04-02"},"slug":"nasa","content":"$f"},{"metadata":{"title":"Origami tips","publishedAt":"2023-10-12"},"slug":"origamitips","content":"- Practice folding what you like\n- start small and simple\n    - if you don't, you'll fail trying to fold the hard models fast and become discouraged\n        - I think this is good general life advice actually\n- follow inspiring artists on instagram\n    - there's also a big global community on twitter\n- paper type only matters for super complex origami\n\n\nAs with most things, the only way to get better is to actually do it."},{"metadata":{"title":"OrigamiUSA Convention","summary":"","publishedAt":"2023-07-20"},"slug":"origamiusa","content":"The OrigamUSA convention hosted in NYC this weekend was awesome! \n\nI met some of the coolest minds in origami and took 10 classes over 3 days. \n\nSome highlights were:\n\n- meeting my favorite artists: Boice Wong, John Montroll, Brian Chan Meenakshi Mukherji, and Robert Lang \n- learning origami from the special guets, Miyuki Kawamura and Bodo Haag\n- witnessing the Guinness World Record \"largest origami swan\" being folded\n- meeting other awesome folders from across the country\n- seeing an exhibit of some of the best orrigami in the world, and displaying some of my own works at the exhibit\n- grabbing lots of new paper from the shop, courtesy of the scholarship\n\nThis convention has definitely fueled my love for origami even more and I can't wait to fold more :)"},{"metadata":{"title":"Outfit Tracking & Visualization","publishedAt":"2024-06-23"},"slug":"outfits","content":"I started tracking all of my clothes so I could visualize my wear habits [here](https://roshni.streamlit.app). \nFor ease of logging, I use iOS shortcuts to automatically create entries in a google sheet, which is then parsed by the streamlit app to provide live, low maintenance daily updates."},{"metadata":{"title":"Transferring to a UC","summary":"A guide to transferring to a University of California","publishedAt":"2024-09-02"},"slug":"uc-transfer","content":"$10"}]}]}]
 6:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","meta","2",{"name":"next-size-adjust"}]]
 1:null
