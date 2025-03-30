@@ -35,6 +35,9 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Setup upload-artifact manually
+        uses: actions/upload-artifact@v3
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
