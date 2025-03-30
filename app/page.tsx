@@ -45,7 +45,7 @@ export default function Page() {
           ACM Cyber
         </a>
         {`, UCLA’s cybersecurity club`}
-        {`, I help organize  `}
+        {`, I help with  `}
         <a href="https://github.com/pbrucla/wiki" target="_blank" rel="noopener noreferrer" className="text-neutral-300 dark:text-neutral-300 underline">
           Cyber Academy
         </a>
