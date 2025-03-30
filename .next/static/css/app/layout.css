@@ -1156,9 +1156,6 @@ body > .os-scrollbar {
   .static\/ {
     position: static;
   }
-  .static\/chunks\/app\/blog\/\[slug\]\/page {
-    position: static;
-  }
   .static\/webpack {
     position: static;
   }
