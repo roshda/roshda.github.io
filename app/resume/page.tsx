@@ -75,7 +75,8 @@ export default function Page() {
         September 2024 - May 2026
       </p>
       <ul className="list-disc list-inside mb-6">
-        <li><strong>Coursework:</strong> Linear Algebra, Object Oriented Programming, Real Analysis, Statistics, Discrete Structures</li>
+        <li><strong>Coursework:</strong> Computer Networking, Linear Algebra, Object-Oriented Programming, Real Analysis,
+        Mathematical Statistics, Discrete Structures, Software Construction, Mathematical Cryptology</li>
         <li><strong>Awards:</strong> OrigamiUSA International Scholarship, Pedersen Music Scholarship, F&C Lahm Transfer Scholarship</li>
       </ul>
 
@@ -126,135 +127,6 @@ export default function Page() {
         <li>Calculus and Statistics tutor for 20 high school and college students.</li>
       </ul>
 
-      <h2 className="font-medium text-xl mb-4 mt-8 tracking-tighter">Projects</h2>
-      <hr className="my-2 border-neutral-800 dark:border-neutral-800" />
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold">
-          <a href="https://github.com/roshda/lymphoma-lens" target="_blank" className="text-blue-400 dark:text-blue-400">
-            Lymphoma Tracker 🔒
-          </a>
-        </h3>
-        <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-        Tool to identify and track lesions for my weekly lymphoma treatments. Trained a supervised machine learning model on
-        my own labeled data to detect lesions and built a web platform to easily count and visualize trends.
-        </p>
-        <p className="text-neutral-400 dark:text-neutral-400 text-sm">
-          <strong></strong> Machine Learning, Hugging Face Spaces, Gradio, Python, OpenCV
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold">
-          <a href="https://roshda.github.io/blog/nasa" target="_blank" className="text-blue-400 dark:text-blue-400">
-            NASA Dashboards 🔒
-          </a>
-        </h3>
-        <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-          Jupyter notebook dashboards created during research internship at NASA Ames.
-        </p>
-        <p className="text-neutral-400 dark:text-neutral-400 text-sm">
-          <strong></strong> Python, Jupyter Notebook, Machine Learning, Data Analysis, Pandas, Scikit-Learn
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold">
-          <a href="https://github.com/roshda/misc-cyber/blob/main/linux_dashboard.py" target="_blank" className="text-blue-400 dark:text-blue-400">
-            Linux Security Dashboard
-          </a>
-        </h3>
-        <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-          CLI dashboard providing real-time insights into system and network health of a Linux system.
-        </p>
-        <p className="text-neutral-400 dark:text-neutral-400 text-sm">
-          <strong></strong> Python, Cybersecurity, Linux
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold">
-          <a href="https://roshda.github.io/origami" target="_blank" className="text-blue-400 dark:text-blue-400">
-            Origami Portfolio
-          </a>
-        </h3>
-        <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-          Collection of geometric origami folded since 2019.
-        </p>
-        <p className="text-neutral-400 dark:text-neutral-400 text-sm">
-          <strong></strong> Paper, Math
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold">
-          <a href="https://github.com/roshda/misc-cyber/blob/main/secure-pwnd.sh" target="_blank" className="text-blue-400 dark:text-blue-400">
-            Secure pwnd
-          </a>
-        </h3>
-        <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-          Check if a password has been compromised by submitting part of the password’s hash to Have I Been Pwnd?, avoiding sending the site a plaintext password.
-        </p>
-        <p className="text-neutral-400 dark:text-neutral-400 text-sm">
-          <strong></strong> Bash Script, Cybersecurity, Linux
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold">
-          <a href="https://github.com/roshda/phishing-email/" target="_blank" className="text-blue-400 dark:text-blue-400">
-            Phishing Email Classifier
-          </a>
-        </h3>
-        <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-        Machine learning model, logistic regression classifier to identify phishing emails.
-        </p>
-        <p className="text-neutral-400 dark:text-neutral-400 text-sm">
-          <strong></strong> Python, Machine Learning
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold">
-          <a href="https://roshda.github.io/galaxy-o-meter" target="_blank" className="text-blue-400 dark:text-blue-400">
-            Galaxy-O-Meter
-          </a>
-        </h3>
-        <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-          Sentiment analysis of tweets referencing recent Star Wars shows.
-        </p>
-        <p className="text-neutral-400 dark:text-neutral-400 text-sm">
-          <strong></strong> Java, Maven, Microsoft Azure Cognitive Services: Text Analysis API, JSON
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold">
-          <a href="https://roshni.streamlit.app/" target="_blank" className="text-blue-400 dark:text-blue-400">
-            Wardrobe Tracker
-          </a>
-        </h3>
-        <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-          Ongoing data project tracking everything I wore to gain insights on cost, usability, etc.
-        </p>
-        <p className="text-neutral-400 dark:text-neutral-400 text-sm">
-          <strong></strong> Streamlit, Data Visualization, iOS Shortcuts, Python, Google Cloud
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold">
-          <a href="https://github.com/roshda/misc-cyber/blob/main/xkcd-password.py" target="_blank" className="text-blue-400 dark:text-blue-400">
-            XKCD Password Generator
-          </a>
-        </h3>
-        <p className="italic text-sm text-neutral-400 dark:text-neutral-400">
-          Generate a secure password using the method specified in an XKCD comic.
-        </p>
-        <p className="text-neutral-400 dark:text-neutral-400 text-sm">
-          <strong></strong> Python
-        </p>
-      </div>
 
       </section>
   );
