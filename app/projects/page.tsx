@@ -1,10 +1,11 @@
+// app/projects/page.tsx
 import { getProjects } from './helpers';
 import ProjectsClient from './ProjectsClient';
 
-export const revalidate = 0; 
+export const dynamic = 'force-static'; 
 
 export default function ProjectsPage() {
-  const projects = getProjects();
+  const projects = getProjects(); 
 
   return <ProjectsClient projects={projects} />;
 }
