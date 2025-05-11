@@ -3,14 +3,12 @@ title: Pineapple - USC CTF 2024
 summary:  my writeup
 publishedAt: 2024-11-30
 ---
-This is my writeup for the "Pineapple" (forensics - network analysis) challenge at USC CTF 2024. I played the CTF this weekend with my college team, Psi Beta Rho. 
+This is my writeup for the "Pineapple" (forensics - network analysis) challenge at USC CTF 2024. I played the CTF this weekend with Psi Beta Rho at UCLA. 
 
 
 In this challenge, we were given a .pcapng file which is basically a type of packet capture file that shows intercepted network traffic. Our task was to examine this traffic to uncover any data that might reveal a flag.
 
-
-Load pineapple.pcapng in Wireshark, a tool to analyze network traffic/packets. This shows all the packets in the capture, with info like source and destination IPs, protocols, and a summary for each packet. I filtered by HTTP traffic because it usually includes readable data, which could contain usernames, file uploads, or other useful information. 
-
+I loaded pineapple.pcapng in Wireshark, a tool to analyze network traffic/packets. This shows all the packets in the capture, with info like source and destination IPs, protocols, and a summary for each packet. I filtered by HTTP traffic because it usually includes readable data, which could contain usernames, file uploads, or other useful information. 
 
 
 Form Data and POST Requests
@@ -22,11 +20,9 @@ I first followed the HTTP stream for this application form url encoded packet an
 - filepw: conjoined_TRIANGLES
 
 
-
-
 This means that it probably had something to do with a file submission involving a filename (hoolicon) and an encryption key (conjoined_TRIANGLES) we could use to view the file.
 
-Then I looked at another POST request (type of HTTP request used to send data to a server) TCP stream to find this data for this hoolicon file. (A TCP stream is a way to view the flow of data, packets, between two devices over the TCP (Transmission Control Protocol) as a stream/conversation)
+Then I looked at another POST request (type of HTTP request used to send data to a server) TCP stream to find this data for this hoolicon file. (A TCP stream in Wireshark is a way to view the flow of data, packets, between two devices over the TCP (Transmission Control Protocol) as a stream/conversation)
 
 It showed that the data was in 7z format which is like a compressed format that supports encryption as well.  
 

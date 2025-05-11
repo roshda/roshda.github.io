@@ -181,3 +181,32 @@ li {
   }
 }
 
+
+.footer-gradient {
+  /* solid fallback */
+  background: hsla(120, 100%, 25%, 1);
+  /* standard gradient */
+  background: linear-gradient(
+    90deg,
+    hsla(120, 100%, 25%, 1) 0%,
+    hsla(120, 100%, 15%, 1) 100%
+  );
+  /* Firefox */
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(120, 100%, 25%, 1) 0%,
+    hsla(120, 100%, 15%, 1) 100%
+  );
+  /* Chrome, Safari */
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(120, 100%, 25%, 1) 0%,
+    hsla(120, 100%, 15%, 1) 100%
+  );
+  /* IE6–9 */
+  filter: progid:DXImageTransform.Microsoft.gradient(
+    startColorstr="#008000",
+    endColorstr="#004D00",
+    GradientType=1
+  );
+}

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function BlogClient({ blogPosts }) {
   const [typedText, setTypedText] = useState('');
-  const fullText = 'find . -type l -ls';
+  const fullText = 'ls *.mdx';
   const typingSpeed = 150; 
 
   useEffect(() => {
@@ -33,13 +33,12 @@ export default function BlogClient({ blogPosts }) {
     <div>
       <div className="mb-8">
         <p className="text-xl font-mono text-neutral-400 dark:text-neutral-400">
-          <span>{'roshni@m3:~$ '}</span>
+          <span>{'~$ '}</span>
           <span>{typedText}</span>
           <span className="blinking-cursor">|</span> 
         </p>
       </div>
 
-      {/* render the sorted blog posts */}
       <div className="mt-8">
         {sortedPosts.map((post) => (
           <div key={post.slug} className="mb-2">
@@ -49,7 +48,7 @@ export default function BlogClient({ blogPosts }) {
               </p>
               <a
                 href={`/blog/${post.slug}`}
-                className="text-neutral-100 dark:text-neutral-100 text-base font-normal hover:text-neutral-100"
+                className="text-neutral-100 dark:text-neutral-100 text-base font-normal hover:text-neutral-400"
               >
                 {post.metadata.title}
               </a>

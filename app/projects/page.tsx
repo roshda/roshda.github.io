@@ -1,12 +1,10 @@
 import { getProjects } from './getProjects';
-import ProjectsClient from './ProjectsClient'; // Client Component for the UI part
+import ProjectsClient from './ProjectsClient'; 
 
 export default async function ProjectsPage() {
-  const projects = getProjects(); // Fetch projects on the server side
-
+  const projects = getProjects(); 
   return (
     <section>
-      {/* Pass project data to the client component */}
       <ProjectsClient projects={projects} />
     </section>
   );

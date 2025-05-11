@@ -6,14 +6,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: "Roshni Dave",
-    template: "%s | Roshni Dave",  // Keeping the title template from layout.tsx
+    template: "%s | Roshni Dave", 
   },
-  description: "Roshni's portfolio.",  // Updated description from layout.tsx
+  description: "Roshni C. Dave.",  
   openGraph: {
-    title: "roshda",  // Updated title from layout.tsx
-    description: "This is my portfolio.",  // Same description
+    title: "roshda",  
+    description: "Roshni's portfolio and cybersecurity blog", 
     url: baseUrl,
-    siteName: "Roshni Dave",  // Site name from layout.tsx
+    siteName: "Roshni C. Dave",  
     locale: "en_US",
     type: "website",
   },

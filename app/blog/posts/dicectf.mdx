@@ -7,28 +7,28 @@ This spring break weekend, I played DiceCTF 2025 Quals with some members of my c
 
 This is a writeup for one of the cryptography challenges I solved, [winxy-pistol](https://github.com/defund/ctf/tree/master/dicectf-quals-2025/winxy-pistol). This challenge came as a direct sequel to vorpal-sword, continuing the RSA-based oblivious transfer. While vorpal-sword introduced the basic concept and let us break it via a algebra, winxy-pistol added a fixed RSA key and XOR-based masking. I solved with parallel connections to exploit a key reuse.
 
----
 
-## The setup
+## Setup
 
-This is once again an interactive choose-your-own-adventure game. Every time the player reached a fork in the tunnel, they were presented with two messages — one survival message ("you continue walking. turn to page X.") and one death message ("you die of a fever.", etc). Only one was meant to be readable by the player, depending on how they interacted with the OT protocol. The server repeated this process 64 times, and in order to reach the end and receive the flag, the player had to correctly pick the survival path each round.
+This is an interactive choose‑your‑own‑adventure game. At each fork the server presents two encrypted messages — one “live” (“you continue walking. turn to page X.”) and one “die” (“you die of a fever,” etc). This happens 64 times, and only by picking the live message every round do you reach the end and get the flag.
 
-To accomplish this, the server used a 1-out-of-2 oblivious transfer protocol based on RSA. Each round, the server generated two random values, x0 and x1, and expected the client to send back a value v. It then calculated:
+Each round runs a 1‑out‑of‑2 RSA oblivious transfer. The server samples random `x0, x1` and prints them with the public key `(n, e)`. You choose a secret `r`, compute  
+```  
+v = x_b + rᵉ mod n  
+```  
+to encode your branch choice `b ∈ {0,1}`, and send `v`.
 
-```
-k0 = (v - x0)^d mod n
-k1 = (v - x1)^d mod n
-```
-
-and encrypted the messages via:
-
-```
-c0 = m0 ⊕ H(k0)
-c1 = m1 ⊕ H(k1)
-```
-
-where H is SHAKE-256. Importantly, the RSA modulus n and private exponent d were the same across all rounds.
-
+It then computes  
+```  
+k0 = (v - x0)**d % n  
+k1 = (v - x1)**d % n  
+```  
+and encrypts the two messages as  
+```  
+c0 = m0 ⊕ H(k0)  
+c1 = m1 ⊕ H(k1)  
+```  
+Each `k_i` is hashed with SHAKE‑256 into a 64‑byte pad (from a 128‑byte key) and XOR’d with the padded message. 
 
 ## What didn’t work anymore
 

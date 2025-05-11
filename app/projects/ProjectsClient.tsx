@@ -31,7 +31,7 @@ export default function ProjectsClient({ projects }) {
     <div>
       <div className="mb-8">
         <p className="text-xl font-mono text-neutral-400 dark:text-neutral-400">
-          <span>{'roshni@m3:~$ '}</span>
+          <span>{'~$ '}</span>
           <span>{typedText}</span>
           <span className="blinking-cursor">|</span> 
         </p>
@@ -44,11 +44,12 @@ export default function ProjectsClient({ projects }) {
               href={project.metadata.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl font-bold text-blue-400 dark:text-blue-400"
+              className="text-l font-bold text-neutral-300 hover:text-neutral-400 transition-colors"
+
             >
               {project.metadata.title}
             </a>
-            <p className="text-neutral-400 dark:text-neutral-400">
+            <p className="text-sm text-neutral-400 dark:text-neutral-400">
               {project.metadata.summary}
             </p>
             <p className="text-sm text-neutral-500 dark:text-neutral-500">

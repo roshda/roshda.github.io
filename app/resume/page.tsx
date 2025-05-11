@@ -33,7 +33,7 @@ export default function Page() {
     <section>
       <div className="mb-8">
         <p className="text-xl font-mono text-neutral-400 dark:text-neutral-400">
-          <span>{'roshni@m3:~$ '}</span>
+          <span>{'~$ '}</span>
           <span>{typedText}</span>
           <span className="blinking-cursor">|</span> 
         </p>

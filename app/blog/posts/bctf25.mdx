@@ -1,5 +1,5 @@
 ---
-title: b01lers CTF 2025 :)
+title: cve1   - b01lers CTF 2025
 publishedAt: 2025-04-22
 ---
 
@@ -32,6 +32,8 @@ cverecord/
 │   └── cverecord_input.json    
 ```
 
+This setup allows you to generate proofs locally to submit to the server. 
+
 The circuit in cverecord.circom enforces these constraints:
 
 - year ≤ 2025
@@ -54,7 +56,7 @@ The verifier accepts proofs using snarkjs, but then adds a server-side check, pa
 
 ## Exploit idea
 
-My amazing teammate Ronak found [this unresolved issue in the snarkjs repo](https://github.com/iden3/snarkjs/issues/423) which pointed to a vulnerability in the Solidity Groth16 verifier template:
+My teammate Ronak found [this unresolved issue in the snarkjs repo](https://github.com/iden3/snarkjs/issues/423) which pointed to a vulnerability in the Solidity Groth16 verifier template:
 
 ```
 mstore(add(_pPairing, 32), mod(sub(q, calldataload(add(pA, 32))), q))
@@ -62,9 +64,9 @@ mstore(add(_pPairing, 32), mod(sub(q, calldataload(add(pA, 32))), q))
 
 khovratovich noticed that any out-of-range public input is reduced modulo q before verification. This keeps values in the scalar field but the server still sees the original input.
 
-Then, from the provided cverecord verification key, I noticed that the field in this challenge was the scalar field of the elliptic curve BN128. I googled to find the modulus q of this field, as it will be fixed, and found it in [this ethereum package](https://github.com/ethereum/py_ecc/blob/main/py_ecc/bn128/bn128_curve.py), and I realized the key to breaking this is just setting q - 1. 
+Then, from the provided cverecord verification key, I noticed that the field in this challenge was the scalar field of the elliptic curve BN128. I googled to find the modulus q of this field and found it in [this ethereum package](https://github.com/ethereum/py_ecc/blob/main/py_ecc/bn128/bn128_curve.py) that implements elliptic curve cryptography in Python. 
 
-By the vulnerability, any two numbers that differ by a multiple of q represent the same field element to the zk‑SNARK verifier, so
+Given this, I then realized realized the key to breaking this is just setting q - 1. By the vulnerability, any two numbers that differ by a multiple of q represent the same field element to the zk‑SNARK verifier, so
 (q – 1) mod q = q – 1, and (q – 1) ≡ –1 (mod q). Since the circuit only ever reasons about values mod q, we can bypass. 
 
 Then when the server does 
@@ -86,7 +88,7 @@ The challenge provides you with all the tools you need to generate witnesses and
 }
 ```
 
-2: Generate witness and proof 
+2: Generate witness and proof with these two commands.
 
 ```bash
 node cverecord_js/generate_witness.js \
@@ -101,7 +103,7 @@ npx snarkjs groth16 prove \
   public.json
 ```
 
-3: Submit the proof to the server
+3: Submit the proof to the server.
 
 ```bash
 curl -s -X POST https://cver1.harkonnen.b01lersc.tf/ \
@@ -116,7 +118,7 @@ curl -s -X POST https://cver1.harkonnen.b01lersc.tf/ \
 bctf{d0n1_f0r93t_t0_54n1t1z3_1nput5_6y_3n4c3n9_c1rcu1t_c0n5tr8nts}
 ```
 
-Also Ronak is my goat for finding the GitHub issue. 
+Ronak is the goat for finding this GitHub issue. 
 
 ---
 
@@ -147,11 +149,13 @@ print(f"Here is your share ^_^: ({share}, {evaluate_poly(poly, share, s)})")
 
 
 Each time you connect, the server gives you two numbers, a 64-bit prime a, and a “share” that looks like x, y, where y = s + a * P(x). 
-`s` is the flag, P(x) is a random degree-19 polynomial with unknown coefficients, and all the polynomial's coefficients are multiples of a. 
+s is the flag, P(x) is a random degree-19 polynomial with unknown coefficients, and all the polynomial's coefficients are multiples of a. 
 
 Since the entire a * P(x) term is divisible by a, we know y ≡ s  (mod a) and therefore every connection gives us a new congruence, s ≡ yᵢ mod aᵢ.
 
-If we collect enough of these (each with a distinct 64-bit prime aᵢ), then by the Chinese Remainder Theorem we can reconstruct s mod the product of all the aᵢ's. Since the flag is only 66 bytes long (~528 bits), and each aᵢ is a 64-bit prime, we just need a few congruenes to exceed the flag’s bit length and recover it.
+If we collect enough of these (each with a distinct 64-bit prime aᵢ), then by the Chinese Remainder Theorem we can reconstruct s mod the product of all the aᵢ's. 
+
+Since the flag is only 66 bytes long (~528 bits) as mentioned, and each aᵢ is a 64-bit prime, we just need a few congruenes to exceed the flag’s bit length and recover it.
 
 
 ### solve.py

@@ -104,20 +104,6 @@ export default function Blog({ params }) {
       <article className="prose">
         <CustomMDX source={post.content} />
       </article>
-
-      {/* navigation */}
-      <footer className="flex justify-end mt-8 space-x-4">
-        {previousSlug && (
-          <Link href={`/blog/${previousSlug}`} className="hover:underline flex items-center text-3xl">
-            &lt; 
-          </Link>
-        )}
-        {nextSlug && (
-          <Link href={`/blog/${nextSlug}`} className="hover:underline flex items-center text-3xl">
-            &gt; 
-          </Link>
-        )}
-      </footer>
     </section>
   );
 }
