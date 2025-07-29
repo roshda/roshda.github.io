@@ -35,21 +35,40 @@ export default function Page() {
         </p>
       </div>
 
-      {/* Content */}
       <p className="mb-4">
         {`Hi, I'm Roshni! I study mathematics & computer science at UCLA. I'm interested in cybersecurity and software development.`}
       </p>
       <p className="mb-4">
         {`As an officer at `}
-        <a href="https://www.acmcyber.com/" target="_blank" rel="noopener noreferrer" className="text-neutral-300 dark:text-neutral-300 underline">
+        <a
+          href="https://www.acmcyber.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-neutral-300 dark:text-neutral-300 underline"
+        >
           ACM Cyber
         </a>
-        {`, I’m helping cybersecurity education grow at UCLA. I also compete in CTFs with Psi Beta Rho. Check out my `}
-        <a href="/blog" target="_blank" rel="noopener noreferrer" className="text-neutral-300 dark:text-neutral-300 underline">
+        {`, I’m helping cybersecurity education grow at UCLA. I also compete in CTFs with `}
+        <a
+          href="https://ctftime.org/team/186494"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-neutral-300 dark:text-neutral-300 underline"
+        >
+          Psi Beta Rho
+        </a>
+        {`. Check out my `}
+        <a
+          href="/blog"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-neutral-300 dark:text-neutral-300 underline"
+        >
           blog posts
         </a>
         {` to read my challenge writeups! `}
       </p>
+
     </section>
   );
 }

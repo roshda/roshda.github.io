@@ -42,13 +42,13 @@ export default function BlogClient({ blogPosts }) {
       <div className="mt-8">
         {sortedPosts.map((post) => (
           <div key={post.slug} className="mb-2">
-            <div className="flex justify-start items-center"> 
-              <p className="text-neutral-400 text-base w-24"> 
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-start gap-1 sm:gap-4">
+              <p className="text-neutral-400 text-sm sm:text-base flex-shrink-0">
                 {post.metadata.publishedAt}
               </p>
               <a
                 href={`/blog/${post.slug}`}
-                className="text-neutral-100 dark:text-neutral-100 text-base font-normal hover:text-neutral-400"
+                className="text-neutral-100 dark:text-neutral-100 text-sm sm:text-base font-normal hover:text-neutral-400"
               >
                 {post.metadata.title}
               </a>
