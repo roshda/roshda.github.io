@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Roshni Dave</title>
+  <style>
+    :root {
+      --bg:#000;
+      --fg:#eaeaea;
+      --muted:#b7b7b7;
+      --line:#222;
+      --accent:#fff;
+      --radius:14px;
+      --max:420px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif;
+      background:var(--bg); color:var(--fg);
+      min-height:100svh; display:grid; place-items:start center;
+      padding:8vh 20px 64px;
+    }
+    .container{width:100%; max-width:var(--max); display:flex; flex-direction:column; gap:14px;}
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px 20px;
+      background:rgba(255,255,255,0.02);
+    }
+
+    .hero{display:flex; gap:14px; align-items:center;}
+    .avatar{width:64px;height:64px;border-radius:50%;border:1px solid var(--line);object-fit:cover;flex:none;}
+    .hero-text{flex:1;}
+    h1{font-size:26px;font-weight:800;color:#fff;line-height:1.1;}
+    .tagline{margin-top:4px;font-size:15px;line-height:1.4;color:var(--muted);}
+
+    .link-item{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      text-decoration:none;color:#cfcfcf;
+      font-size:15px;
+      background:rgba(255,255,255,0.01);
+      transition:all .15s ease;
+    }
+    .link-item:hover{color:var(--accent);border-color:#2e2e2e;background:rgba(255,255,255,0.04);transform:translateX(2px);}
+
+    .icon{
+      width:22px;height:22px;
+      display:grid;place-items:center;
+      padding:2px; 
+      margin-left:12px;
+      line-height:0;
+      color:currentColor; opacity:.85; flex:none;
+    }
+    .icon svg{width:100%;height:100%;display:block;overflow:visible}
+
+    @media (max-width:420px){
+      .avatar{width:56px;height:56px;}
+      h1{font-size:22px;}
+      .tagline{font-size:14px;}
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="card hero">
+      <img src="roshni.jpeg" alt="Profile photo" class="avatar" />
+      <div class="hero-text">
+        <h1>Roshni Dave</h1>
+        <p class="tagline">UCLA Applied Math • Cybersecurity</p>
+      </div>
+    </section>
+
+    <a class="link-item" href="https://github.com/roshda" target="_blank" rel="noopener">
+      GitHub
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 .5A12 12 0 0 0 0 12.7c0 5.4 3.4 10 8.2 11.6.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.3-1.6-1.3-1.6-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.2 1.8 1.2 1 .1.5.9 2.7 1 .8-.6 1.7-1 2.6-1.3-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11.4 11.4 0 0 1 5.9 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8 1 .3 1.9 1.7 1.9 3.4v2.5c0 .3.2.7.8.6 4.8-1.6 8.2-6.2 8.2-11.6A12 12 0 0 0 12 .5Z"/>
+        </svg>
+      </span>
+    </a>
+
+    <a class="link-item" href="https://github.com/roshda/ctf" target="_blank" rel="noopener">
+      CTF Writeups
+      <span class="icon" aria-hidden="true">
+        <!-- Doc/File -->
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 2a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6H6Zm7 1.5L18.5 9H13V3.5ZM8 13h8v1.5H8V13Zm0 3h8v1.5H8V16Z"/>
+        </svg>
+      </span>
+    </a>
+
+    <a class="link-item" href="https://www.linkedin.com/in/roshnidave" target="_blank" rel="noopener">
+      LinkedIn
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4.98 3.5a2.5 2.5 0 1 1-.02 5 2.5 2.5 0 0 1 .02-5ZM3.5 8.98h2.96V21H3.5V8.98Zm6.44 0h2.84v1.65h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.64V21h-2.96v-6.07c0-1.45-.03-3.31-2.02-3.31-2.03 0-2.34 1.58-2.34 3.2V21H9.94V8.98Z"/>
+        </svg>
+      </span>
+    </a>
+
+    <a class="link-item" href="https://x.com/roshnicdave" target="_blank" rel="noopener">
+      X
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 3h4.7l5.2 7.4L18.9 3H22l-7.6 10.6L22 21h-4.7l-5.4-7.7L6 21H2l8-10.9L3 3Z"/>
+        </svg>
+      </span>
+    </a>
+
+    <a class="link-item" href="https://instagram.com/origami_duck" target="_blank" rel="noopener">
+      Instagram
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.75-.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/>
+        </svg>
+      </span>
+    </a>
+
+    <a class="link-item" href="https://youtube.com/@ducky..." target="_blank" rel="noopener">
+      YouTube
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22 12s0-3.36-.43-4.84c-.24-.8-.94-1.43-1.77-1.64C17.96 5 12 5 12 5s-5.96 0-7.8.52c-.83.21-1.53.84-1.77 1.64C2 8.64 2 12 2 12s0 3.36.43 4.84c.24.8.94 1.43 1.77 1.64C6.04 19 12 19 12 19s5.96 0 7.8-.52c.83-.21 1.53-.84 1.77-1.64C22 15.36 22 12 22 12ZM10 15.5v-7l6 3.5-6 3.5Z"/>
+        </svg>
+      </span>
+    </a>
+  </main>
+</body>
+</html>
